@@ -5,10 +5,10 @@ import it.devlecc.primorest.model.Prodotto;
 import it.devlecc.primorest.repository.ProdottiRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -17,18 +17,45 @@ public class ProdottoRestController {
     public ProdottiRepository repository;
 
     ProdottoRestController(ProdottiRepository repository) {
-        this.repository= repository;
+        this.repository = repository;
     }
+
     @GetMapping("/prodotti")
-    public List<Prodotto> leggiTuttiProdotti (){
+    public List<Prodotto> leggiTuttiProdotti() {
         logger.info("prendo tutti gli utenti ");
         return repository.findAll();
     }
-    @GetMapping ("/prodotti/{id}")
+
+    @GetMapping("/prodotti/{id}")
     public Prodotto trovaProdottoConID(@PathVariable Long id) {
-        return  repository.findById(id).orElseThrow(
+        return repository.findById(id).orElseThrow(
                 () -> new ProdottoNonTrovato(id));
     }
 
+    @PostMapping("/prodotto")
+    public Prodotto inserisciUnNuovoProdotto(@RequestBody Prodotto nuovoProdotto) {
+        return repository.save(nuovoProdotto);
+    }
+
+    @PutMapping("/prodotto/{id}")
+    public Prodotto aggiornaDatiProdotto(@PathVariable Long id, @RequestBody Prodotto prodotto) {
+        return repository.save(prodotto);
+
+    }
+    @DeleteMapping ("/prodotto/{id}")
+    void  eliminaProdotto(@PathVariable Long id){
+
+        repository.deleteById(id);
+    }
+
+    @GetMapping ("/prodotto/ricercatradate")
+    public List <Prodotto> ricercatradate(
+            @RequestParam (name = "datada") @DateTimeFormat(pattern = "dd-MM-yyyy")
+                    Date datada,
+            @RequestParam( name = "dataa")   @DateTimeFormat (pattern = "dd-MM-yyyy")
+                    Date dataa
+    ){
+        return repository.findByDatadiacquistoBetween(datada,dataa);
+    }
 
 }
