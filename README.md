@@ -9,4 +9,4 @@ Test finale
 1. legge tutti i prodotti  
 
 
-![immagine](C:\Users\admin\Desktop\leggituttiiprodotti.png)
+<img src="C:\Users\admin\Desktop\leggi tutti i prodotti.png"/>
