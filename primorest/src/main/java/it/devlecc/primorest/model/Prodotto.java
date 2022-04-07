@@ -10,7 +10,7 @@ public class Prodotto {
     @Id
     @GeneratedValue
     private Long id;
-    private Date datadiscadenza,datadicaquisto;
+    private Date datadiscadenza,datadiacquisto;
     private Float prezzo,quantità;
     private String nome;
 
@@ -19,7 +19,7 @@ public class Prodotto {
 
     public Prodotto(Date  datadiscadenza, Date datadicaquisto, float prezzo, float quantità, String nome) {
         this.datadiscadenza = datadiscadenza;
-        this.datadicaquisto = datadicaquisto;
+        this.datadiacquisto = datadicaquisto;
         this.prezzo = prezzo;
         this.quantità = quantità;
         this.nome = nome;
@@ -42,11 +42,11 @@ public class Prodotto {
     }
 
     public Date getDatadicaquisto() {
-        return datadicaquisto;
+        return datadiacquisto;
     }
 
     public void setDatadicaquisto(Date datadicaquisto) {
-        this.datadicaquisto = datadicaquisto;
+        this.datadiacquisto = datadicaquisto;
     }
 
     public float getPrezzo() {
