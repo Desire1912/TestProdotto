@@ -10,3 +10,4 @@ Test finale
 
 
 <img src="C:\Users\admin\Desktop\leggi tutti i prodotti.png"/>
+<img src="C:\Users\admin\Desktop\leggi tutti i prodotti.png"/>
